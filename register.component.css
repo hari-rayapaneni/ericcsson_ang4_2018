@@ -1,0 +1,42 @@
+
+.frmStyle
+{
+    width:50%;
+    margin-left: 25%;
+}
+
+legend
+{
+    text-align: center;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+input
+{
+    width:90%;
+    margin-bottom: 3%;
+
+
+}
+.mat-form-field
+{
+    margin-right: 10%;
+    margin-left: 10%;
+}
+.radiostyle
+{
+    display: inline;
+    margin-left: 6%;
+}
+
+gender-radio-group {
+    display: inline-flex;
+    flex-direction: column;
+
+}
+
+.gender-radio-button {
+    margin: 3%;
+}
+
