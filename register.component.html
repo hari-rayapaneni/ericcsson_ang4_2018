@@ -1,0 +1,93 @@
+<form [formGroup]="regForm"  (submit)="save()"  class="frmStyle">
+<fieldset>
+    <legend>User Registration</legend>
+<mat-form-field>
+    <input type="text" matInput placeholder="First Name"
+           [formControl]="firstName" >
+    <mat-icon>person</mat-icon>
+    <mat-error *ngIf="firstName.hasError('pattern')">
+        First Name is in <strong> 5 to 50 characters</strong>
+    </mat-error>
+    <mat-error *ngIf="firstName.hasError('required')">
+       First Name is <strong>required</strong>
+    </mat-error>
+</mat-form-field>
+    <mat-form-field>
+        <input type="text" matInput placeholder="Last Name"
+               [formControl]="lastName">
+        <mat-icon>person</mat-icon>
+        <mat-error *ngIf="lastName.hasError('pattern')">
+            Last Name is in <strong> 5 to 50 characters</strong>
+        </mat-error>
+        <mat-error *ngIf="lastName.hasError('required')">
+            Last Name is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input type="date" matInput placeholder="DOB" [formControl]="dob">
+        <mat-icon>today</mat-icon>
+
+        <mat-error *ngIf="dob.hasError('required')">
+            DOB is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input type="email" matInput placeholder="Email" [formControl]="email">
+        <mat-icon>email</mat-icon>
+
+        <mat-error *ngIf="email.hasError('required')">
+            Email is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input type="tel" matInput placeholder="Mobile No" [formControl]="mobileNo">
+        <mat-icon>contact_phone</mat-icon>
+        <mat-error *ngIf="mobileNo.hasError('pattern')">
+            Mobile No is in <strong> 10 Digits</strong>
+        </mat-error>
+        <mat-error *ngIf="mobileNo.hasError('required')">
+            Mobile No is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>
+
+        <div class="radiostyle">
+        <mat-radio-group  class="gender-radio-group"
+                           [(ngModel)]="selectedGender"
+                          [ngModelOptions]="{standalone:true}" >
+            <mat-radio-button  class="gender-radio-button"
+                              *ngFor="let option of genderOptions"
+                              [value]="option">
+                {{option}}
+            </mat-radio-button>
+        </mat-radio-group>
+        </div>
+        <mat-form-field *ngIf="countries?.length>0">
+           <mat-select placeholder="Country" (change)="selectedCountry($event)">
+               <mat-option>None</mat-option>
+               <mat-option *ngFor="let obj of countries" [value]="obj" >
+                   {{obj.name}}
+               </mat-option>
+           </mat-select>
+
+        </mat-form-field>
+    <mat-form-field *ngIf="states?.length>0">
+        <mat-select placeholder="State" (change)="selectedState($event)">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let obj of states" [value]="obj" >
+                {{obj.stateName}}
+            </mat-option>
+        </mat-select>
+
+    </mat-form-field>
+
+    <button type="submit" [disabled]="!regForm.valid"
+            mat-icon-button id="savebutton">
+        <mat-icon>save</mat-icon>
+    </button>
+    <button type="reset" mat-icon-button >
+        <mat-icon>clear</mat-icon>
+    </button>
+
+</fieldset>
+</form>
